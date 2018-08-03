@@ -1,8 +1,8 @@
 module.exports = (mongoose) => {
     /**
-     * Inventory Schema
+     * Product Schema
      */
-    let InventorySchema = new mongoose.Schema({
+    let ProductSchema = new mongoose.Schema({
         sku: {
             type: String,
             index: {unique: [true, 'Sku already exist.']}
@@ -17,5 +17,5 @@ module.exports = (mongoose) => {
             type: Number
         }
     }, {timestamps: true});
-    return mongoose.model('Inventory', InventorySchema);
+    return mongoose.model('Product', ProductSchema);
 };

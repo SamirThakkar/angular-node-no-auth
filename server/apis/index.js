@@ -5,7 +5,8 @@ let byPassedEndpoints = [
 	'/check-login',
 	'/inventory',
 	'/upload-file',
-	'/user'
+	'/user',
+	'/product'
 ];
 let fs                = require('fs');
 module.exports        = class Apis {
