@@ -1,1 +1,22 @@
 ﻿export * from './pager.service';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
