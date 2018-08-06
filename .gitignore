@@ -54,3 +54,4 @@ src/app/**/*.js
 src/app/**/*.js.map
 
 src/app/**/*.map
+package-lock.json
