@@ -9,12 +9,9 @@ import {inventoryModule} from './inventory/inventory.module';
 import {UserModule} from './user/user.module';
 import {PagerService} from '../@shared/services';
 import {DashboardComponent} from "./dashboard/dashboard.component";
+import {ProductModule} from "./product/product.module";
 
 let routes: Routes = [
-
-
-
-
   {
     path: '',
     pathMatch: 'full',
@@ -40,6 +37,11 @@ let routes: Routes = [
     children: [...UserModule.ROUTES]
   },
   {
+    path: 'products',
+    component: RootComponent,
+    children: [...ProductModule.ROUTES]
+  },
+  {
     path: 'file-upload',
     component: RootComponent,
     children: [...inventoryModule.ROUTES]
@@ -55,7 +57,7 @@ let routes: Routes = [
 
 @NgModule({
   declarations: [RootComponent, HomeComponent],
-  imports: [CommonModule, HttpClientModule, RouterModule.forRoot(routes), DashboardModule, inventoryModule],
+  imports: [CommonModule, HttpClientModule, RouterModule.forRoot(routes), DashboardModule, inventoryModule,ProductModule],
   exports: [RouterModule],
   providers: [PagerService]
 })

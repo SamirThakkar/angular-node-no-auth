@@ -7,8 +7,10 @@ import { HttpClientModule } from '@angular/common/http';
 import {SlimLoadingBarService} from "ng2-slim-loading-bar";
 import {inventoryModule} from "./modules/inventory/inventory.module";
 import {UserModule} from "./modules/user/user.module";
-import {AppComponent} from './app.component';
 import {SharedModule} from './@shared/shared.module';
+import { AppComponent } from "./app.component";
+import { ajax } from "rxjs/ajax";
+import { ajaxGet } from "rxjs/internal-compatibility";
 
 declare var require: any;
 let jQuery = require('jquery');
@@ -40,3 +42,5 @@ let jQuery = require('jquery');
 export class AppModule {
 
 }
+
+

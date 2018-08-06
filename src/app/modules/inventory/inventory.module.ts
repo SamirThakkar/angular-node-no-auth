@@ -5,8 +5,8 @@ import {InventoryUploadComponent} from "./update-inventory/inventory-upload.comp
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {InventoryService} from "./inventory.service";
 
-let routes = [
-    {
+const routes = [
+{
         path: '',
         component: InventoryUploadComponent
     },
