@@ -2,20 +2,11 @@ module.exports = (mongoose) => {
     /**
      * Product Schema
      */
-    let ProductSchema = new mongoose.Schema({
-        sku: {
-            type: String,
-            index: {unique: [true, 'Sku already exist.']}
-        },
-        sku_id: {
-            type: Number
-        },
-        inventory_level: {
-            type: Number
-        },
-        product_id: {
-            type: Number
-        }
+    const ProductSchema = new mongoose.Schema({
+      ProductName : String,
+      ProductPrice : String,
+      ProductImage : Object,
+      MoreProductImages:Array
     }, {timestamps: true});
     return mongoose.model('Product', ProductSchema);
 };

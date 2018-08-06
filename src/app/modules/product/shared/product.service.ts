@@ -42,18 +42,18 @@ export class ProductService {
 
   getProductById(id) {
       this.createAuthenticationHeaders(); // Create headers before sending to API
-      let searchUrl = `/singleProduct/${id}`;
+      let searchUrl = `/api/product/${id}`;
     return this.http.get(searchUrl, this.options).pipe(map((response: any) => response.json()));
   }
 
   deleteProductById(id) {
       this.createAuthenticationHeaders(); // Create headers before sending to API
-      let searchUrl = `/singleProduct?productId=${id}`;
+      let searchUrl = `/api/product/${id}`;
     return this.http.delete(searchUrl, this.options).pipe(map((response: any) => response.json()));
   }
 
   imageUpload(file){
-    let searchUrl = `/imageUpload`;
+    let searchUrl = `/api/imageUpload`;
     let headers = new Headers();
     headers.append('Content-Type', 'multipart/form-data; boundary=------WebKitFormBoundary'+ Math.random());
     headers.append('Accept','application/json');
@@ -67,7 +67,7 @@ export class ProductService {
 
 
   moreImagesUpload(files){
-    let searchUrl = `/moreImagesUpload`;
+    let searchUrl = `/api/moreImagesUpload`;
     let headers = new Headers();
     headers.append('Content-Type', 'multipart/form-data; boundary=------WebKitFormBoundary'+ Math.random());
     headers.append('Accept','application/json');

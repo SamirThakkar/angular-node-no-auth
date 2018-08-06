@@ -9,12 +9,14 @@ class ProductController {
     app.post('/api/product', this.createProduct);
     app.put('/api/product/:id', this.updateProduct);
     app.delete('/api/product/:id', this.removeProduct);
+    app.post('/api/imageUpload', this.uploadSingleImage);
+    app.post('/api/moreImagesUpload', this.uploadMultipleImage);
   }
 
   listProduct(req, res) {
     console.log('List product.');
-    global.MongoORM.Product.find().then((products) => {
-      res.sendResponse(products);
+    global.MongoORM.Product.find({}).then((products) => {
+      res.send(products);
     }).catch((error) => {
       res.sendError(error);
     })
@@ -32,16 +34,16 @@ class ProductController {
 
   createProduct(req, res) {
     console.log('Create product');
-    let sku = req.body.sku,
-      skuId = req.body.skuId,
-      inventoryLevel = req.body.inventory,
-      productId = req.body.productId;
+    let productName = req.body.ProductName,
+      productPrice = req.body.ProductPrice,
+      productImage = req.body.ProductImage,
+      moreProductImages = req.body.MoreProductImages;
 
     let product = new global.MongoORM.Product();
-    product.sku = sku;
-    product.sku_id = skuId;
-    product.inventory_level = inventoryLevel;
-    product.product_id = productId;
+    product.ProductName = productName;
+    product.ProductPrice = productPrice;
+    product.ProductImage = productImage;
+    product.MoreProductImages = moreProductImages;
     product.save().then((response) => {
       res.send(response);
     }).catch((error) => {
@@ -75,6 +77,28 @@ class ProductController {
     })
   }
 
+
+  uploadSingleImage(req,res){
+    global.upload(req, res, (err) => {
+      if (err) {
+        return res.send({status: 'error', message: "Something went wrong!", error: err});
+      }
+      return res.send({
+        status: 'success',
+        message: "File uploaded successfully!.",
+        filePath: req.files[0].path,
+      });
+    });
+  }
+
+  uploadMultipleImage(req,res){
+    global.moreImagesUpload(req, res, (err) => {
+      if (err) {
+        return res.send({status: 'error', message: "Something went wrong!", error: err});
+      }
+      return res.send({status: 'success', message: "File uploaded successfully!.", files: req.files});
+    });
+  }
 
 }
 

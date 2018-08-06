@@ -1,8 +1,5 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-
-
-
 import {User} from './user';
 import {ActivatedRouteSnapshot, Resolve} from "@angular/router";
 import {DataService} from '../../../@shared/services/data.service';

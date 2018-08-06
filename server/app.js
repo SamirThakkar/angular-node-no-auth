@@ -14,11 +14,31 @@ require('./config/express')(app);
 
 app.use(express.static(path.join(__dirname, '../dist')));
 
+
+const multer =require('multer');
+//multer image store
+let storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    console.log('file : ', file);
+    cb(null, './uploads')
+  },
+  filename: function (req, file, cb) {
+    let splitFileName = file.originalname.split('.');
+    file.originalname  = `${Math.random().toString(36).substring(2)}.${splitFileName[splitFileName.length-1]}`;
+    cb(null, file.originalname);
+  }
+});
+
+global.upload = multer({ storage: storage }).array('file', 1);
+global.moreImagesUpload = multer({ storage: storage }).array('uploads[]', 12);
+
+
 //Configure api routes authentication
 app.use((req, res, next) => {
   if (req.path.indexOf('/apis') === 0) { // If request is starting with /apis, then apply authentication check
+    next();
     if (req.session.isLoggedIn === 'Y') {
-      next();
+
     } else {
       let secretKey = req.headers['X-SECRET-KEY'];
       let accessKey = req.headers['X-ACCESS-KEY'];

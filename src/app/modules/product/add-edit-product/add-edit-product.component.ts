@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Http} from '@angular/http';
+import {HttpClient} from '@angular/common/http';
 import {ProductService} from '../shared/product.service';
 import {Product} from '../shared/product.model';
 import * as _ from 'lodash';
@@ -26,7 +26,7 @@ export class AddEditProductComponent implements OnInit {
 
 
 
-  constructor(private router: Router, private http: Http, private route: ActivatedRoute,
+  constructor(private router: Router, private http: HttpClient, private route: ActivatedRoute,
               private productService : ProductService ) {
   }
 

@@ -6,7 +6,7 @@ import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {ProductService} from './shared/product.service';
 import {DataResolve} from '../../@shared/services/data.resolve';
-import {Routes} from "@angular/router";
+import {RouterModule, Routes} from "@angular/router";
 
 
 const routes: Routes = [
@@ -28,7 +28,7 @@ const routes: Routes = [
   {
     path: 'edit/:id',
     component: AddEditProductComponent,
-    data: { apiPath: `/singleProduct/:id`},
+    data: { apiPath: `/api/product/:id`},
     resolve: { product : DataResolve },
   }
 ];
@@ -38,7 +38,8 @@ const routes: Routes = [
   imports: [
     HttpModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   declarations: [
     AddEditProductComponent,

@@ -14,11 +14,14 @@ export class ListProductComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.productList = this.route.snapshot.data['/api/product'];
+    console.log('!!!!!1',this.route.snapshot.data['productS']);
+    this.productList = this.route.snapshot.data['product'];
+    console.log('this.productList==>>', this.productList);
+
     this.checkProductListLength();
     }
 
-  delete(id){
+  deleteProduct(id){
     this.productService.deleteProductById(id).subscribe((res)=>{
           this.getProductList();
     },(e)=>{
@@ -27,7 +30,9 @@ export class ListProductComponent implements OnInit {
   }
 
   checkProductListLength(){
-    if(this.productList.length){
+    console.log('this.productList', this.productList);
+
+    if(this.productList && this.productList.length){
       this.isProducts = true
     }else{
       this.isProducts = false;
@@ -37,13 +42,12 @@ export class ListProductComponent implements OnInit {
   getProductList(){
     this.productService.getAllProducts().subscribe((res)=>{
       this.productList = res;
+      console.log('this.productList', this.productList);
+
       this.checkProductListLength();
     },(e)=>{
 
     })
   }
-
-
-
 
 }
